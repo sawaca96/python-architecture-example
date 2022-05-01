@@ -1,5 +1,5 @@
 # Creating a python base with environment variables
-FROM python:3.10.3-slim as base
+FROM --platform=linux/amd64 python:3.10.3-slim as base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
