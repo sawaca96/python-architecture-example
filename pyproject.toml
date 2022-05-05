@@ -11,10 +11,11 @@ uvicorn = {extras = ["standard"], version = "^0.17.6"}
 SQLAlchemy = "^1.4.36"
 psycopg2-binary = "^2.9.3"
 alembic = "^1.7.7"
+email-validator = "^1.2.1"
 
 [tool.poetry.dev-dependencies]
 mypy = "0.942"
-isort = "^5.10.1"
+isort = "5.10.1"
 flake8 = "4.0.1"
 black = "22.3.0"
 pytest = "^7.1.1"
