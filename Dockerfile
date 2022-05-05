@@ -41,10 +41,11 @@ COPY --from=builder $WORKDIR $WORKDIR
 WORKDIR $WORKDIR
 # Runtime deps already installed. we install dev deps quickly
 RUN poetry install
-COPY ./app ./app
+COPY . .
 
 EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD alembic upgrade head && \
+    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 
 FROM base as production
@@ -52,5 +53,7 @@ COPY --from=builder $WORKDIR/.venv $WORKDIR/.venv
 
 WORKDIR $WORKDIR
 COPY ./app ./app
+COPY ./alembic.ini .
 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "app:app"]
+CMD alembic upgrade head && \
+    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
