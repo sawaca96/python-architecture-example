@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any
 
-from app.model import User
+from app.models import User
 
 
 def create_user_entity(**kwargs: Any) -> User:

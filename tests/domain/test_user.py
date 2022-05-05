@@ -1,6 +1,6 @@
 import pytest
 
-from app.model import FollowError, UnfollowError
+from app.models import FollowError, UnfollowError
 from tests.utils import create_user_entity
 
 
