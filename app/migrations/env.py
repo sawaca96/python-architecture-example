@@ -3,6 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
+from app.config import settings
 from app.tables import metadata
 
 # this is the Alembic Config object, which provides
@@ -24,10 +25,9 @@ target_metadata = metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-config.set_main_option(
-    "sqlalchemy.url",
-    "postgresql://user:password@localhost:5432/python_architecture",
-)
+
+DB_URL = "postgresql://" + settings.PG_DSN.split("//")[1]
+config.set_main_option("sqlalchemy.url", DB_URL)
 
 
 def run_migrations_offline():
