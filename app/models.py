@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from datetime import datetime
-
 from pydantic import BaseModel, EmailStr
 
 
@@ -19,25 +17,22 @@ class User(BaseModel):
     email: EmailStr
     bio: str | None = None
     image: str | None = None
-    password: str
-    created_at: datetime
-    updated_at: datetime
-    followings: list[User]
+    followings: list[int] = []
 
     def __eq__(self, o: object) -> bool:
         if isinstance(o, User):
             return self.id == o.id
         return False
 
-    def follow(self, user: User) -> None:
-        if user not in self.followings:
-            self.followings.append(user)
+    def follow(self, user_id: int) -> None:
+        if user_id not in self.followings:
+            self.followings.append(user_id)
         else:
             raise FollowError
 
-    def unfollow(self, user: User) -> None:
-        if user in self.followings:
-            self.followings.remove(user)
+    def unfollow(self, user_id: int) -> None:
+        if user_id in self.followings:
+            self.followings.remove(user_id)
         else:
             raise UnfollowError
 
