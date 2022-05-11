@@ -14,19 +14,3 @@ class User(BaseModel):
         if isinstance(o, User):
             return self.id == o.id
         return False
-
-
-class Article(BaseModel):
-    slug: str
-    title: str
-    description: str
-    body: str
-    tags: list[str]
-    author: User
-    favorited: bool
-    favorites_count: int
-
-
-class Comment(BaseModel):
-    body: str
-    author: User
