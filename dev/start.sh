@@ -1,4 +1,6 @@
 #!/bin/bash
 
-pre-commint install
+set -e
+
+pre-commit install
 docker-compose up --build

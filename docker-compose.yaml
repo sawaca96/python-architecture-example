@@ -11,7 +11,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./app:/code/app
+      - .:/workspace
     depends_on:
       - db
 
@@ -20,7 +20,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=app
+      - POSTGRES_DB=python_architecture
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_INITDB_ARGS=--encoding=UTF-8
