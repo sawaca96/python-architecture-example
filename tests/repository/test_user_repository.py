@@ -1,11 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.repository import UserRepositoryImpl
+from app.repository import SQLUserRepositoryImpl
 
 
 async def test_create_user_ok(session: AsyncSession) -> None:
     # given
-    repo = UserRepositoryImpl(session)
+    repo = SQLUserRepositoryImpl(session)
 
     # when
     user = await repo.create(
@@ -21,7 +21,7 @@ async def test_create_user_ok(session: AsyncSession) -> None:
 
 async def test_get_user_by_id(session: AsyncSession) -> None:
     # given
-    repo = UserRepositoryImpl(session)
+    repo = SQLUserRepositoryImpl(session)
     user = await repo.create(
         username="jake",
         email="jake@jake.jake",
@@ -37,7 +37,7 @@ async def test_get_user_by_id(session: AsyncSession) -> None:
 
 async def test_update_user(session: AsyncSession) -> None:
     # given
-    repo = UserRepositoryImpl(session)
+    repo = SQLUserRepositoryImpl(session)
     user = await repo.create(
         username="jake",
         email="jake@jake.jake",
@@ -65,7 +65,7 @@ async def test_update_user(session: AsyncSession) -> None:
 
 async def test_follow(session: AsyncSession) -> None:
     # given
-    repo = UserRepositoryImpl(session)
+    repo = SQLUserRepositoryImpl(session)
     user_a = await repo.create(
         username="jake",
         email="jake@jake.jake",
@@ -98,7 +98,7 @@ async def test_follow(session: AsyncSession) -> None:
 
 async def test_unfollow(session: AsyncSession) -> None:
     # given
-    repo = UserRepositoryImpl(session)
+    repo = SQLUserRepositoryImpl(session)
     user_a = await repo.create(
         username="jake",
         email="jake@jake.jake",
