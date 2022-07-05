@@ -35,18 +35,23 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8000
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /ping
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /ping
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+          {{- if .Values.postgresql.enabled }}
+          - name: PG_DSN
+            value: {{ .Values.postgresql.dsn }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
