@@ -8,7 +8,7 @@ authors = ["sawaca96 <sawaca96@gmail.com>"]
 python = "^3.10"
 fastapi = "^0.75.1"
 uvicorn = {extras = ["standard"], version = "^0.17.6"}
-SQLAlchemy = "^1.4.36"
+SQLAlchemy = {extras = ["mypy"], version = "^1.4.39"}
 psycopg2-binary = "^2.9.3"
 alembic = "^1.7.7"
 email-validator = "^1.2.1"

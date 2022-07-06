@@ -31,5 +31,5 @@ repos:
     rev: v0.942
     hooks:
     - id: mypy
-      additional_dependencies: [types-all]
+      additional_dependencies: [types-all,'sqlalchemy[mypy]']
       exclude: "migrations"
