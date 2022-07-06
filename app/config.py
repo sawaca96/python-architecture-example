@@ -6,6 +6,7 @@ class Settings(BaseSettings):
         env="PG_DSN",
         default="postgresql+asyncpg://user:password@db:5432/python_architecture",
     )
+    ROOT_PATH: str = Field(env="ROOT_PATH", default="/")
 
     class Config:
         env_file = ".env"
